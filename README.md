@@ -1,40 +1,57 @@
-# Your Plugin Name
+# Openpay ![apple](https://cdn3.iconfinder.com/data/icons/picons-social/57/16-apple-32.png) ![android](https://cdn4.iconfinder.com/data/icons/logos-3/228/android-32.png)
 
-Add your plugin badges here. See [nativescript-urlhandler](https://github.com/hypery2k/nativescript-urlhandler) for example.
+## Support
 
-Then describe what's the purpose of your plugin. 
-
-In case you develop UI plugin, this is where you can add some screenshots.
-
-## (Optional) Prerequisites / Requirements
-
-Describe the prerequisites that the user need to have installed before using your plugin. See [nativescript-firebase plugin](https://github.com/eddyverbruggen/nativescript-plugin-firebase) for example.
+Support Android & iOS.
 
 ## Installation
 
-Describe your plugin installation steps. Ideally it would be something like:
-
 ```javascript
-tns plugin add <your-plugin-name>
+tns plugin add nativescript-open-pay
 ```
 
-## Usage 
+## Usage
 
-Describe any usage specifics for your plugin. Give examples for Android, iOS, Angular if needed. See [nativescript-drop-down](https://www.npmjs.com/package/nativescript-drop-down) for example.
-	
-	```javascript
-    Usage code snippets here
-    ```)
+In the demo you will find a test token to test quickly
 
-## API
+```javascript
+import { Observable } from "tns-core-modules/data/observable";
+import { OpenPay, Card } from "nativescript-open-pay";
 
-Describe your plugin methods and properties here. See [nativescript-feedback](https://github.com/EddyVerbruggen/nativescript-feedback) for example.
-    
-| Property | Default | Description |
-| --- | --- | --- |
-| some property | property default value | property description, default values, etc.. |
-| another property | property default value | property description, default values, etc.. |
-    
+export class HelloWorldModel extends Observable {
+    private openPay: OpenPay;
+
+    constructor() {
+        super();
+
+        this.openPay = new OpenPay();
+        this.openPay.setup(
+            "mu1hweksxaapkdwpvjjb",
+            "pk_43244f7c21124764ba711d337d738f6e",
+            false
+        );
+
+        let card: Card = {
+            holderName: "Juan Perez Ramirez",
+            cardNumber: "4111111111111111",
+            expirationMonth: "12",
+            expirationYear: "20",
+            cvv2: "110"
+        };
+
+        this.openPay
+            .createToken(card)
+            .then(function(args) {
+                console.dir(args);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }
+}
+
+```
+
 ## License
 
 Apache License Version 2.0, January 2004
