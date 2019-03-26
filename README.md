@@ -26,9 +26,9 @@ export class HelloWorldModel extends Observable {
 
         this.openPay = new OpenPay();
         this.openPay.setup(
-            "mu1hweksxaapkdwpvjjb",
-            "pk_43244f7c21124764ba711d337d738f6e",
-            false
+            "merchant_id", // merchantId
+            "api_key", // apiKey
+            false // ProductionMode Sandbox = false
         );
 
         let card: Card = {

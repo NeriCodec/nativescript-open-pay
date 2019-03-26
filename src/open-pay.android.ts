@@ -59,14 +59,12 @@ export class OpenPay {
                         openpayServiceException: mx.openpay.android.exceptions.OpenpayServiceException
                     ) {
                         //Handle Error
-                        console.dir(openpayServiceException);
                         reject(openpayServiceException);
                     },
                     onCommunicationError: function(
                         serviceUnavailableException: mx.openpay.android.exceptions.ServiceUnavailableException
                     ) {
                         //Handle communication error
-                        console.dir(serviceUnavailableException);
                         reject(serviceUnavailableException);
                     }
                 })
